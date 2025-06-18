@@ -1,0 +1,7 @@
+FROM postgres:latest
+
+ENV POSTGRES_DB=vdt_db \
+    POSTGRES_USER=postgres \
+    POSTGRES_PASSWORD=123456
+
+EXPOSE 5432
