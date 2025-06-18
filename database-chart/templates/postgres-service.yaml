@@ -5,8 +5,11 @@ metadata:
   labels:
     app: { { include "postgres-chart.name" . } }
 spec:
-  type: NodePort
+  type: { { .Values.service.type } }
   ports:
-    - port: 5432
+    - port: { { .Values.service.port } }
+      targetPort: postgres
+      protocol: TCP
+      name: postgres
   selector:
     app: { { include "postgres-chart.name" . } }
