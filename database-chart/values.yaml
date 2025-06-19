@@ -13,7 +13,7 @@ service:
 persistence:
   enabled: true
   storageClass: "standard" 
-  size: 1Gi
+  size: 5Gi
 
 env:
   POSTGRES_DB: student_management
