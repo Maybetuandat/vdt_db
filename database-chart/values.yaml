@@ -13,21 +13,13 @@ service:
 persistence:
   enabled: true
   storageClass: "standard" 
-  size: 5Gi
+  size: 1Gi
 
 env:
   POSTGRES_DB: student_management
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: "123456"
 
-resources:
-  limits:
-    cpu: 500m
-    memory: 512Mi
-  requests:
-    cpu: 250m
-    memory: 256Mi
 
-# Thêm probe để kiểm tra health
 healthCheck:
   enabled: true
