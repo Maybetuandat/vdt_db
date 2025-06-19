@@ -1,21 +1,22 @@
 replicaCount: 1
 
 image:
-  repository: postgres
-  tag: "14"
+  repository: maybetuandat/vdt_db
+  tag: "1.0"
   pullPolicy: IfNotPresent
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 5432
+  nodePort: 30432
 
 persistence:
   enabled: true
-  storageClass: ""
-  size: 1Gi
+  storageClass: "standard" 
+  size: 5Gi
 
 env:
-  POSTGRES_DB: vdt_db
+  POSTGRES_DB: student_management
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: "123456"
 
@@ -26,3 +27,7 @@ resources:
   requests:
     cpu: 250m
     memory: 256Mi
+
+# Thêm probe để kiểm tra health
+healthCheck:
+  enabled: true

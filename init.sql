@@ -1,22 +1,17 @@
--- init.sql
-CREATE DATABASE student_management;
-
--- Kết nối tới database (dùng \c thay vì use)
-\c student_management;
-
--- Tạo bảng (bỏ dấu phẩy thừa)
-CREATE TABLE IF NOT EXISTS students (
+-- init.sql - PostgreSQL compatible
+-- Tạo bảng students
+CREATE TABLE students (
     id BIGSERIAL PRIMARY KEY,
     full_name VARCHAR(255) NOT NULL,
     birth_date DATE,
     school_category VARCHAR(500)
 );
 
--- Tạo index
-CREATE INDEX IF NOT EXISTS idx_students_full_name ON students(full_name);
-CREATE INDEX IF NOT EXISTS idx_students_school_category ON students(school_category);
+-- Tạo index để tối ưu tìm kiếm
+CREATE INDEX idx_students_full_name ON students(full_name);
+CREATE INDEX idx_students_school_category ON students(school_category);
 
--- Thêm dữ liệu
+-- Thêm dữ liệu sinh viên
 INSERT INTO students (full_name, birth_date, school_category) VALUES
 ('Nguyễn Đăng Quân', '2004-05-11', 'Đại học Công nghệ (UET)'),
 ('Trịnh Vinh Tuấn Đạt', '2003-10-05', 'Học viện Công nghệ Bưu chính Viễn thông - Cơ sở phía Bắc'),
@@ -41,3 +36,6 @@ INSERT INTO students (full_name, birth_date, school_category) VALUES
 ('Hoàng Minh Thắng', '1999-06-09', 'Đại học tổng hợp ITMO'),
 ('Vũ Đình Ngọc Bảo', '2005-01-29', 'Đại học Khoa học tự nhiên - ĐHQG TPHCM (HCMUS)'),
 ('Nguyễn Hồng Lĩnh', '2003-12-08', 'Đại học Công nghệ (UET)');
+
+-- Verify data inserted
+SELECT COUNT(*) as total_students FROM students;
