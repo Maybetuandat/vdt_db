@@ -20,6 +20,14 @@ env:
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: "123456"
 
+# Thêm resource limits cho database (QUAN TRỌNG NHẤT!)
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"  # Postgres thường cần nhiều RAM
+    cpu: "500m"
 
 healthCheck:
   enabled: true
